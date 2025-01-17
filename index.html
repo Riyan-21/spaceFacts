@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Ten Facts About Space</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .fact-box {
+            border: 2px solid white;
+            padding: 20px;
+            margin: 20px 0;
+            width: 300px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 12px;
+        }
+
+        .day-mode {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Top Ten Facts About Space</h1>
+        <button id="toggleTheme">Toggle Day/Night Mode</button>
+        <div id="factBox" class="fact-box">
+            <p id="factText">Click the button to see a fact!</p>
+        </div>
+        <button id="nextFact">Next Fact</button>
+    </div>
+    <footer>
+        Made with help of Pieces
+    </footer>
+    <script>
+        const facts = [
+            {
+                heading: "Vastness of Space",
+                description: "Space is incredibly vast. The observable universe is about 93 billion light-years in diameter, and it's still expanding."
+            },
+            {
+                heading: "Black Holes",
+                description: "Black holes are regions in space where the gravitational pull is so strong that nothing, not even light, can escape from them."
+            },
+            {
+                heading: "The Sun's Size",
+                description: "The Sun accounts for about 99.86% of the total mass of the solar system. It is so large that approximately 1.3 million Earths could fit inside it."
+            },
+            {
+                heading: "Neutron Stars",
+                description: "Neutron stars are incredibly dense. A sugar-cube-sized amount of neutron-star material would weigh about 6 billion tons on Earth."
+            },
+            {
+                heading: "Galaxies",
+                description: "There are over 100 billion galaxies in the observable universe, each containing millions or even billions of stars."
+            },
+            {
+                heading: "The Moon's Distance",
+                description: "The Moon is moving away from Earth at a rate of about 3.8 centimeters per year."
+            },
+            {
+                heading: "Space is Silent",
+                description: "Space is completely silent because there is no atmosphere to carry sound waves."
+            },
+            {
+                heading: "Venus' Rotation",
+                description: "A day on Venus (one full rotation on its axis) is longer than a year on Venus (one orbit around the Sun)."
+            },
+            {
+                heading: "Water in Space",
+                description: "Water has been found on the Moon, Mars, and several moons of Jupiter and Saturn, suggesting the potential for life beyond Earth."
+            },
+            {
+                heading: "Dark Matter and Dark Energy",
+                description: "About 95% of the universe is made up of dark matter and dark energy, which are still not fully understood by scientists."
+            }
+        ];
+
+        let currentFactIndex = 0;
+
+        document.getElementById('nextFact').addEventListener('click', () => {
+            const fact = facts[currentFactIndex];
+            document.getElementById('factText').innerHTML = `<strong>${fact.heading}:</strong> ${fact.description}`;
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+        });
+
+        document.getElementById('toggleTheme').addEventListener('click', () => {
+            document.body.classList.toggle('day-mode');
+        });
+    </script>
+</body>
+</html>
