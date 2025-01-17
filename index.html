@@ -13,7 +13,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: black;
             color: white;
             transition: background-color 0.3s, color 0.3s;
@@ -21,39 +21,71 @@
 
         .container {
             text-align: center;
+            max-width: 90%;
+            width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         h1 {
             margin-bottom: 20px;
+            font-size: 2em;
         }
 
         button {
             margin: 10px;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 1em;
             cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+            transition: transform 0.1s ease; /* Add transition for smooth animation */
+        }
+
+        button:active {
+            transform: scale(0.95); /* Scale down the button when pressed */
         }
 
         .fact-box {
             border: 2px solid white;
             padding: 20px;
             margin: 20px 0;
-            width: 300px;
-            height: 100px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 150px;
+        }
+
+        .fact-heading {
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 12px;
+            margin-top: 20px;
+            font-size: 0.8em;
         }
 
         .day-mode {
             background-color: white;
             color: black;
+        }
+
+        .day-mode a {
+            color: black;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                max-width: 80%;
+                width: 500px;
+            }
+
+            button {
+                max-width: 250px;
+            }
         }
     </style>
 </head>
@@ -62,12 +94,13 @@
         <h1>Top Ten Facts About Space</h1>
         <button id="toggleTheme">Toggle Day/Night Mode</button>
         <div id="factBox" class="fact-box">
-            <p id="factText">Click the button to see a fact!</p>
+            <div id="factHeading" class="fact-heading">Click the button to see a fact!</div>
+            <p id="factText"></p>
         </div>
         <button id="nextFact">Next Fact</button>
     </div>
     <footer>
-        Made with help of Pieces
+        Made by <a href="https://www.linkedin.com/in/riyan-kundu/" target="_blank" style="color: white;">Riyan</a> with help of <a href="https://pieces.app/" target="_blank" style="color: white;">Pieces</a>
     </footer>
     <script>
         const facts = [
@@ -117,7 +150,8 @@
 
         document.getElementById('nextFact').addEventListener('click', () => {
             const fact = facts[currentFactIndex];
-            document.getElementById('factText').innerHTML = `<strong>${fact.heading}:</strong> ${fact.description}`;
+            document.getElementById('factHeading').innerText = fact.heading;
+            document.getElementById('factText').innerText = fact.description;
             currentFactIndex = (currentFactIndex + 1) % facts.length;
         });
 
